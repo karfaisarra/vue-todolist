@@ -51,14 +51,15 @@ createApp({
             this.tasks.splice(index, 1)
         },
         sbarra(i){
-            console.log('ho cliccato');
+           
             const task = this.tasks[i]
             if (task.done === false) {
                 task.done = true  
             }else{
                 task.done= false
             }
-            
+            const era = !task.done
+            console.log(task.text, 'era uguale a', era,'adesso è diventato', task.done);
         }
         
     }
