@@ -13,18 +13,20 @@
         <div class="container">
             <div class="add_todo ">
                 <h2 class="py-3">Add a new Todo</h2>
-                <input type="text" v-model="newTask">
+                <input type="text" v-model="newTask" @keyup.enter="addTask">
                 <button @click="addTask">Add a Todo</button>
                 <small class="text-danger" v-show="error">Devi inserire una task di almeno 5 caratteri</small>
             </div>
             <div class="todo_list">
                 <h3 class="py-3">To Do List</h3>
-                <ul>
-                    <li v-for="(task, i) in tasks" :class="tasks[i].done === true ? 'sbarra' : ''">
+                <ul v-if="tasks.length !== 0">
+                    <li v-for="(task, i) in tasks" @click.stop="sbarra(i)"
+                    :class="tasks[i].done === true ? 'sbarra' : ''">
                         {{task.text}}
-                        <i class="fa-regular fa-circle-xmark" @click="delete(i)"></i>
+                        <i class="fa-regular fa-circle-xmark" @click.stop="cancella(i)"></i>
                     </li>
                 </ul>
+                <p v-else>Bravo!! non c'è niente da fare</p>
             </div>
         </div>
     </div>
